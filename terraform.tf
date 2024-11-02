@@ -1,5 +1,5 @@
 resource "yandex_mdb_kafka_cluster" "sentry" {
-  folder_id = ""
+  folder_id   = ""
   name        = "sentry"
   environment = "PRODUCTION"
   network_id  = yandex_vpc_network.sentry.id
@@ -19,18 +19,6 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
       }
     }
   }
-}
-
-resource "yandex_vpc_network" "sentry" {
-  name      = "vpc"
-  folder_id = ""
-}
-
-resource "yandex_vpc_subnet" "sentry" {
-  folder_id = ""
-  zone           = "ru-central1-a"
-  network_id     = yandex_vpc_network.sentry.id
-  v4_cidr_blocks = ["10.5.0.0/24"]
 }
 
 resource "yandex_mdb_kafka_user" "sentry" {
