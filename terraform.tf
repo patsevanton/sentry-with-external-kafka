@@ -21,8 +21,8 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
 }
 
 resource "yandex_vpc_network" "sentry" {
-  name        = "vpc"
-  folder_id   = ""
+  name      = "vpc"
+  folder_id = ""
 }
 
 resource "yandex_vpc_subnet" "sentry" {
@@ -40,10 +40,9 @@ resource "yandex_mdb_kafka_user" "sentry" {
 resource "yandex_mdb_kafka_topic" "events" {
   cluster_id         = yandex_mdb_kafka_cluster.sentry.id
   name               = "events"
-  partitions         = 4
+  partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
@@ -60,8 +59,8 @@ resource "yandex_mdb_kafka_topic" "snuba-commit-log" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -78,7 +77,6 @@ resource "yandex_mdb_kafka_topic" "transactions" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
@@ -88,8 +86,8 @@ resource "yandex_mdb_kafka_topic" "snuba-transactions-commit-log" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -99,7 +97,6 @@ resource "yandex_mdb_kafka_topic" "snuba-metrics" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
@@ -130,8 +127,8 @@ resource "yandex_mdb_kafka_topic" "snuba-sessions-commit-log" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -141,8 +138,8 @@ resource "yandex_mdb_kafka_topic" "snuba-metrics-commit-log" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -236,7 +233,6 @@ resource "yandex_mdb_kafka_topic" "snuba-queries" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
@@ -246,7 +242,6 @@ resource "yandex_mdb_kafka_topic" "processed-profiles" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
@@ -263,8 +258,7 @@ resource "yandex_mdb_kafka_topic" "ingest-replay-events" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
-    "max.message.bytes"      = "15000000"
+    max_message_bytes = "15000000"
   }
 }
 
@@ -274,7 +268,6 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
@@ -284,8 +277,8 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-sets-commit-log" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -295,8 +288,8 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-distributions-commit-lo
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -306,8 +299,8 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-counters-commit-log" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -317,7 +310,6 @@ resource "yandex_mdb_kafka_topic" "generic-events" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
@@ -327,8 +319,8 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-events-commit-log" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "cleanup.policy"         = "compact,delete"
-    "min.compaction.lag.ms"  = "3600000"
+    cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
+    min_compaction_lag_ms = "3600000"
   }
 }
 
@@ -338,7 +330,6 @@ resource "yandex_mdb_kafka_topic" "group-attributes" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    "message.timestamp.type" = "LogAppendTime"
   }
 }
 
