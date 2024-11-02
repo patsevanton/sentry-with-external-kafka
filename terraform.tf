@@ -356,6 +356,12 @@ resource "yandex_mdb_kafka_topic" "snuba-queries" {
   replication_factor = 1
   topic_config {
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "processed-profiles" {
@@ -365,6 +371,12 @@ resource "yandex_mdb_kafka_topic" "processed-profiles" {
   replication_factor = 1
   topic_config {
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "profiles-call-tree" {
@@ -372,6 +384,12 @@ resource "yandex_mdb_kafka_topic" "profiles-call-tree" {
   name               = "profiles-call-tree"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-replay-events" {
@@ -382,6 +400,12 @@ resource "yandex_mdb_kafka_topic" "ingest-replay-events" {
   topic_config {
     max_message_bytes = "15000000"
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-generic-metrics" {
@@ -390,6 +414,12 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics" {
   partitions         = 1
   replication_factor = 1
   topic_config {
+  }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
   }
 }
 
@@ -402,6 +432,12 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-sets-commit-log" {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-distributions-commit-log" {
@@ -412,6 +448,12 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-distributions-commit-lo
   topic_config {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
+  }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
   }
 }
 
@@ -424,6 +466,12 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-counters-commit-log" {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "generic-events" {
@@ -432,6 +480,12 @@ resource "yandex_mdb_kafka_topic" "generic-events" {
   partitions         = 1
   replication_factor = 1
   topic_config {
+  }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
   }
 }
 
@@ -444,6 +498,12 @@ resource "yandex_mdb_kafka_topic" "snuba-generic-events-commit-log" {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "group-attributes" {
@@ -453,6 +513,12 @@ resource "yandex_mdb_kafka_topic" "group-attributes" {
   replication_factor = 1
   topic_config {
   }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-attribution" {
@@ -460,6 +526,12 @@ resource "yandex_mdb_kafka_topic" "snuba-attribution" {
   name               = "snuba-attribution"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-dead-letter-metrics" {
@@ -467,6 +539,12 @@ resource "yandex_mdb_kafka_topic" "snuba-dead-letter-metrics" {
   name               = "snuba-dead-letter-metrics"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-dead-letter-sessions" {
@@ -474,6 +552,12 @@ resource "yandex_mdb_kafka_topic" "snuba-dead-letter-sessions" {
   name               = "snuba-dead-letter-sessions"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-dead-letter-generic-metrics" {
@@ -481,6 +565,12 @@ resource "yandex_mdb_kafka_topic" "snuba-dead-letter-generic-metrics" {
   name               = "snuba-dead-letter-generic-metrics"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-dead-letter-replays" {
@@ -488,6 +578,12 @@ resource "yandex_mdb_kafka_topic" "snuba-dead-letter-replays" {
   name               = "snuba-dead-letter-replays"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-dead-letter-generic-events" {
@@ -495,6 +591,12 @@ resource "yandex_mdb_kafka_topic" "snuba-dead-letter-generic-events" {
   name               = "snuba-dead-letter-generic-events"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-dead-letter-querylog" {
@@ -502,6 +604,12 @@ resource "yandex_mdb_kafka_topic" "snuba-dead-letter-querylog" {
   name               = "snuba-dead-letter-querylog"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-dead-letter-group-attributes" {
@@ -509,6 +617,12 @@ resource "yandex_mdb_kafka_topic" "snuba-dead-letter-group-attributes" {
   name               = "snuba-dead-letter-group-attributes"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-attachments" {
@@ -516,6 +630,12 @@ resource "yandex_mdb_kafka_topic" "ingest-attachments" {
   name               = "ingest-attachments"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-transactions" {
@@ -523,6 +643,12 @@ resource "yandex_mdb_kafka_topic" "ingest-transactions" {
   name               = "ingest-transactions"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-events" {
@@ -530,6 +656,12 @@ resource "yandex_mdb_kafka_topic" "ingest-events" {
   name               = "ingest-events"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-replay-recordings" {
@@ -537,6 +669,12 @@ resource "yandex_mdb_kafka_topic" "ingest-replay-recordings" {
   name               = "ingest-replay-recordings"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-metrics" {
@@ -544,6 +682,12 @@ resource "yandex_mdb_kafka_topic" "ingest-metrics" {
   name               = "ingest-metrics"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-performance-metrics" {
@@ -551,6 +695,12 @@ resource "yandex_mdb_kafka_topic" "ingest-performance-metrics" {
   name               = "ingest-performance-metrics"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-monitors" {
@@ -558,6 +708,12 @@ resource "yandex_mdb_kafka_topic" "ingest-monitors" {
   name               = "ingest-monitors"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "profiles" {
@@ -565,6 +721,12 @@ resource "yandex_mdb_kafka_topic" "profiles" {
   name               = "profiles"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-occurrences" {
@@ -572,6 +734,12 @@ resource "yandex_mdb_kafka_topic" "ingest-occurrences" {
   name               = "ingest-occurrences"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-spans" {
@@ -579,6 +747,12 @@ resource "yandex_mdb_kafka_topic" "snuba-spans" {
   name               = "snuba-spans"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "shared-resources-usage" {
@@ -586,6 +760,12 @@ resource "yandex_mdb_kafka_topic" "shared-resources-usage" {
   name               = "shared-resources-usage"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-metrics-summaries" {
@@ -593,4 +773,10 @@ resource "yandex_mdb_kafka_topic" "snuba-metrics-summaries" {
   name               = "snuba-metrics-summaries"
   partitions         = 1
   replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
