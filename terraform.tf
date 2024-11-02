@@ -46,6 +46,11 @@ resource "yandex_mdb_kafka_topic" "events" {
   replication_factor = 1
   topic_config {
   }
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "event-replacements" {
@@ -53,6 +58,11 @@ resource "yandex_mdb_kafka_topic" "event-replacements" {
   name               = "event-replacements"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-commit-log" {
@@ -64,6 +74,11 @@ resource "yandex_mdb_kafka_topic" "snuba-commit-log" {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
   }
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "cdc" {
@@ -71,6 +86,11 @@ resource "yandex_mdb_kafka_topic" "cdc" {
   name               = "cdc"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "transactions" {
@@ -79,6 +99,11 @@ resource "yandex_mdb_kafka_topic" "transactions" {
   partitions         = 1
   replication_factor = 1
   topic_config {
+  }
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
   }
 }
 
@@ -91,6 +116,11 @@ resource "yandex_mdb_kafka_topic" "snuba-transactions-commit-log" {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
   }
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-metrics" {
@@ -100,6 +130,11 @@ resource "yandex_mdb_kafka_topic" "snuba-metrics" {
   replication_factor = 1
   topic_config {
   }
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "outcomes" {
@@ -107,6 +142,11 @@ resource "yandex_mdb_kafka_topic" "outcomes" {
   name               = "outcomes"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "outcomes-billing" {
@@ -114,6 +154,11 @@ resource "yandex_mdb_kafka_topic" "outcomes-billing" {
   name               = "outcomes-billing"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "ingest-sessions" {
@@ -121,6 +166,11 @@ resource "yandex_mdb_kafka_topic" "ingest-sessions" {
   name               = "ingest-sessions"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-sessions-commit-log" {
@@ -131,6 +181,11 @@ resource "yandex_mdb_kafka_topic" "snuba-sessions-commit-log" {
   topic_config {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
+  }
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
   }
 }
 
@@ -143,6 +198,11 @@ resource "yandex_mdb_kafka_topic" "snuba-metrics-commit-log" {
     cleanup_policy        = "CLEANUP_POLICY_COMPACT_AND_DELETE"
     min_compaction_lag_ms = "3600000"
   }
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-events" {
@@ -150,6 +210,11 @@ resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-events" {
   name               = "scheduled-subscriptions-events"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-transactions" {
@@ -157,6 +222,11 @@ resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-transactions" {
   name               = "scheduled-subscriptions-transactions"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-sessions" {
@@ -164,6 +234,11 @@ resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-sessions" {
   name               = "scheduled-subscriptions-sessions"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-metrics" {
@@ -171,6 +246,11 @@ resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-metrics" {
   name               = "scheduled-subscriptions-metrics"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-generic-metrics-sets" {
@@ -178,6 +258,11 @@ resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-generic-metrics-sets"
   name               = "scheduled-subscriptions-generic-metrics-sets"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-generic-metrics-distributions" {
@@ -185,6 +270,11 @@ resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-generic-metrics-distr
   name               = "scheduled-subscriptions-generic-metrics-distributions"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-generic-metrics-counters" {
@@ -192,6 +282,11 @@ resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-generic-metrics-count
   name               = "scheduled-subscriptions-generic-metrics-counters"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "events-subscription-results" {
@@ -199,6 +294,11 @@ resource "yandex_mdb_kafka_topic" "events-subscription-results" {
   name               = "events-subscription-results"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "transactions-subscription-results" {
@@ -206,6 +306,11 @@ resource "yandex_mdb_kafka_topic" "transactions-subscription-results" {
   name               = "transactions-subscription-results"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "sessions-subscription-results" {
@@ -213,6 +318,11 @@ resource "yandex_mdb_kafka_topic" "sessions-subscription-results" {
   name               = "sessions-subscription-results"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "metrics-subscription-results" {
@@ -220,6 +330,11 @@ resource "yandex_mdb_kafka_topic" "metrics-subscription-results" {
   name               = "metrics-subscription-results"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "generic-metrics-subscription-results" {
@@ -227,6 +342,11 @@ resource "yandex_mdb_kafka_topic" "generic-metrics-subscription-results" {
   name               = "generic-metrics-subscription-results"
   partitions         = 1
   replication_factor = 1
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "snuba-queries" {
