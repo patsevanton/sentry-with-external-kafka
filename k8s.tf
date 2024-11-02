@@ -1,16 +1,13 @@
-resource "yandex_iam_service_account" "instances" {
-  folder_id   = ""
-  name        = "instances"
-  description = "service account to manage VMs"
+resource "yandex_iam_service_account" "sa-k8s-editor" {
+  folder_id = ""
+  name      = "sa-k8s-editor"
 }
 
-resource "yandex_resourcemanager_folder_iam_binding" "editor" {
+resource "yandex_resourcemanager_folder_iam_member" "sa-k8s-editor-permissions" {
   folder_id = ""
   role      = "editor"
 
-  members = [
-    "serviceAccount:${yandex_iam_service_account.instances.id}",
-  ]
+  member = "serviceAccount:${yandex_iam_service_account.sa-k8s-editor.id}"
 }
 
 resource "yandex_kubernetes_cluster" "sentry" {
@@ -27,9 +24,10 @@ resource "yandex_kubernetes_cluster" "sentry" {
 
     public_ip = true
   }
-  service_account_id      = yandex_iam_service_account.instances.id
-  node_service_account_id = yandex_iam_service_account.instances.id
-
-
-  release_channel = "STABLE"
+  service_account_id      = yandex_iam_service_account.sa-k8s-editor.id
+  node_service_account_id = yandex_iam_service_account.sa-k8s-editor.id
+  release_channel         = "STABLE"
+  // to keep permissions of service account on destroy
+  // until cluster will be destroyed
+  depends_on = [yandex_resourcemanager_folder_iam_member.sa-k8s-editor-permissions]
 }
