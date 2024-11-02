@@ -15,7 +15,7 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
       resources {
         resource_preset_id = "s2.micro"
         disk_type_id       = "network-ssd"
-        disk_size          = 100  # Увеличенный размер диска
+        disk_size          = 200
       }
     }
   }
