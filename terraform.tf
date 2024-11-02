@@ -1,8 +1,9 @@
 resource "yandex_mdb_kafka_cluster" "sentry" {
+  folder_id = ""
   name        = "sentry"
   environment = "PRODUCTION"
   network_id  = yandex_vpc_network.sentry.id
-  subnet_ids  = ["${yandex_vpc_subnet.sentry.id}"]
+  subnet_ids  = [yandex_vpc_subnet.sentry.id]
 
   config {
     version          = "2.8"
@@ -14,7 +15,7 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
       resources {
         resource_preset_id = "s2.micro"
         disk_type_id       = "network-ssd"
-        disk_size          = 32
+        disk_size          = 100  # Увеличенный размер диска
       }
     }
   }
@@ -26,6 +27,7 @@ resource "yandex_vpc_network" "sentry" {
 }
 
 resource "yandex_vpc_subnet" "sentry" {
+  folder_id = ""
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.sentry.id
   v4_cidr_blocks = ["10.5.0.0/24"]
