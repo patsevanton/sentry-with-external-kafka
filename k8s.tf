@@ -31,3 +31,41 @@ resource "yandex_kubernetes_cluster" "sentry" {
   // until cluster will be destroyed
   depends_on = [yandex_resourcemanager_folder_iam_member.sa-k8s-editor-permissions]
 }
+
+resource "yandex_kubernetes_node_group" "k8s-node-group" {
+  description = "Node group for the Managed Service for Kubernetes cluster"
+  name        = "k8s-node-group"
+  cluster_id  = yandex_kubernetes_cluster.sentry.id
+  version     = local.k8s_version
+
+  scale_policy {
+    fixed_scale {
+      size = local.number_of_k8s_hosts
+    }
+  }
+
+  allocation_policy {
+    location {
+      zone = yandex_vpc_subnet.sentry.zone
+    }
+  }
+
+  instance_template {
+    platform_id = "standard-v2"
+
+    network_interface {
+      nat                = true
+      subnet_ids         = [yandex_vpc_subnet.sentry.id]
+    }
+
+    resources {
+      memory = local.memory_of_k8s_hosts
+      cores  = local.cores_of_k8s_hosts
+    }
+
+    boot_disk {
+      type = "network-ssd"
+      size = local.boot_disk
+    }
+  }
+}
