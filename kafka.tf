@@ -25,6 +25,136 @@ resource "yandex_mdb_kafka_user" "sentry" {
   cluster_id = yandex_mdb_kafka_cluster.sentry.id
   name       = local.kafka_user
   password   = local.kafka_password
+
+  dynamic "permission" {
+    for_each = toset([
+      "cdc",
+      "event-replacements",
+      "events",
+      "events-subscription-results",
+      "generic-events",
+      "generic-metrics-subscription-results",
+      "group-attributes",
+      "ingest-attachments",
+      "ingest-events",
+      "ingest-metrics",
+      "ingest-monitors",
+      "ingest-occurrences",
+      "ingest-performance-metrics",
+      "ingest-replay-events",
+      "ingest-replay-recordings",
+      "ingest-sessions",
+      "ingest-transactions",
+      "metrics-subscription-results",
+      "outcomes",
+      "outcomes-billing",
+      "processed-profiles",
+      "profiles",
+      "profiles-call-tree",
+      "scheduled-subscriptions-events",
+      "scheduled-subscriptions-generic-metrics-counters",
+      "scheduled-subscriptions-generic-metrics-distributions",
+      "scheduled-subscriptions-generic-metrics-sets",
+      "scheduled-subscriptions-metrics",
+      "scheduled-subscriptions-sessions",
+      "scheduled-subscriptions-transactions",
+      "sessions-subscription-results",
+      "shared-resources-usage",
+      "snuba-attribution",
+      "snuba-commit-log",
+      "snuba-dead-letter-generic-events",
+      "snuba-dead-letter-generic-metrics",
+      "snuba-dead-letter-group-attributes",
+      "snuba-dead-letter-metrics",
+      "snuba-dead-letter-querylog",
+      "snuba-dead-letter-replays",
+      "snuba-dead-letter-sessions",
+      "snuba-generic-events-commit-log",
+      "snuba-generic-metrics",
+      "snuba-generic-metrics-counters-commit-log",
+      "snuba-generic-metrics-distributions-commit-log",
+      "snuba-generic-metrics-sets-commit-log",
+      "snuba-metrics",
+      "snuba-metrics-commit-log",
+      "snuba-metrics-summaries",
+      "snuba-queries",
+      "snuba-sessions-commit-log",
+      "snuba-spans",
+      "snuba-transactions-commit-log",
+      "transactions",
+      "transactions-subscription-results"
+    ])
+
+    content {
+      topic_name = permission.value
+      role       = "ACCESS_ROLE_CONSUMER"
+    }
+  }
+
+  dynamic "permission" {
+    for_each = toset([
+      "cdc",
+      "event-replacements",
+      "events",
+      "events-subscription-results",
+      "generic-events",
+      "generic-metrics-subscription-results",
+      "group-attributes",
+      "ingest-attachments",
+      "ingest-events",
+      "ingest-metrics",
+      "ingest-monitors",
+      "ingest-occurrences",
+      "ingest-performance-metrics",
+      "ingest-replay-events",
+      "ingest-replay-recordings",
+      "ingest-sessions",
+      "ingest-transactions",
+      "metrics-subscription-results",
+      "outcomes",
+      "outcomes-billing",
+      "processed-profiles",
+      "profiles",
+      "profiles-call-tree",
+      "scheduled-subscriptions-events",
+      "scheduled-subscriptions-generic-metrics-counters",
+      "scheduled-subscriptions-generic-metrics-distributions",
+      "scheduled-subscriptions-generic-metrics-sets",
+      "scheduled-subscriptions-metrics",
+      "scheduled-subscriptions-sessions",
+      "scheduled-subscriptions-transactions",
+      "sessions-subscription-results",
+      "shared-resources-usage",
+      "snuba-attribution",
+      "snuba-commit-log",
+      "snuba-dead-letter-generic-events",
+      "snuba-dead-letter-generic-metrics",
+      "snuba-dead-letter-group-attributes",
+      "snuba-dead-letter-metrics",
+      "snuba-dead-letter-querylog",
+      "snuba-dead-letter-replays",
+      "snuba-dead-letter-sessions",
+      "snuba-generic-events-commit-log",
+      "snuba-generic-metrics",
+      "snuba-generic-metrics-counters-commit-log",
+      "snuba-generic-metrics-distributions-commit-log",
+      "snuba-generic-metrics-sets-commit-log",
+      "snuba-metrics",
+      "snuba-metrics-commit-log",
+      "snuba-metrics-summaries",
+      "snuba-queries",
+      "snuba-sessions-commit-log",
+      "snuba-spans",
+      "snuba-transactions-commit-log",
+      "transactions",
+      "transactions-subscription-results"
+    ])
+
+    content {
+      topic_name = permission.value
+      role       = "ACCESS_ROLE_PRODUCER"
+    }
+  }
 }
 
 resource "yandex_mdb_kafka_topic" "events" {
