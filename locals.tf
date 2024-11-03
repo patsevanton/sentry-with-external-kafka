@@ -5,4 +5,6 @@ locals {
   boot_disk = 128 # GB
   memory_of_k8s_hosts = 16
   cores_of_k8s_hosts = 4
+  kafka_user = "sentry"
+  kafka_password = "your_password_here"
 }

@@ -23,8 +23,8 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
 
 resource "yandex_mdb_kafka_user" "sentry" {
   cluster_id = yandex_mdb_kafka_cluster.sentry.id
-  name       = "sentry"
-  password   = "your_password_here"
+  name       = local.kafka_user
+  password   = local.kafka_password
 }
 
 resource "yandex_mdb_kafka_topic" "events" {
