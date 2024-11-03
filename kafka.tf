@@ -3,12 +3,20 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
   name        = "sentry"
   environment = "PRODUCTION"
   network_id  = yandex_vpc_network.sentry.id
-  subnet_ids  = [yandex_vpc_subnet.sentry.id]
+  subnet_ids  = [
+    yandex_vpc_subnet.sentry-a.id,
+    yandex_vpc_subnet.sentry-b.id,
+    yandex_vpc_subnet.sentry-d.id
+  ]
 
   config {
     version          = "2.8"
-    brokers_count    = 1
-    zones            = ["ru-central1-a"]
+    brokers_count    = 3
+    zones            = [
+      yandex_vpc_subnet.sentry-a.zone,
+      yandex_vpc_subnet.sentry-b.zone,
+      yandex_vpc_subnet.sentry-d.zone
+    ]
     assign_public_ip = false
     schema_registry  = false
     kafka {
@@ -522,7 +530,7 @@ resource "yandex_mdb_kafka_topic" "ingest-replay-events" {
   partitions         = 1
   replication_factor = 1
   topic_config {
-    max_message_bytes = "15000000"
+    # max_message_bytes = "15000000"
   }
 
   timeouts {

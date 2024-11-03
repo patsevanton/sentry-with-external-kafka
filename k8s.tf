@@ -18,8 +18,8 @@ resource "yandex_kubernetes_cluster" "sentry" {
   master {
     version = "1.30"
     zonal {
-      zone      = yandex_vpc_subnet.sentry.zone
-      subnet_id = yandex_vpc_subnet.sentry.id
+      zone      = yandex_vpc_subnet.sentry-a.zone
+      subnet_id = yandex_vpc_subnet.sentry-a.id
     }
 
     public_ip = true
@@ -46,16 +46,29 @@ resource "yandex_kubernetes_node_group" "k8s-node-group" {
 
   allocation_policy {
     location {
-      zone = yandex_vpc_subnet.sentry.zone
+      zone = yandex_vpc_subnet.sentry-a.zone
+    }
+
+    location {
+      zone = yandex_vpc_subnet.sentry-b.zone
+    }
+
+    location {
+      zone = yandex_vpc_subnet.sentry-d.zone
     }
   }
+
 
   instance_template {
     platform_id = "standard-v2"
 
     network_interface {
-      nat                = true
-      subnet_ids         = [yandex_vpc_subnet.sentry.id]
+      nat         = true
+      subnet_ids  = [
+        yandex_vpc_subnet.sentry-a.id,
+        yandex_vpc_subnet.sentry-b.id,
+        yandex_vpc_subnet.sentry-d.id
+      ]
     }
 
     resources {

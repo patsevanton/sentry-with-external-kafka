@@ -3,9 +3,23 @@ resource "yandex_vpc_network" "sentry" {
   folder_id = local.folder_id
 }
 
-resource "yandex_vpc_subnet" "sentry" {
+resource "yandex_vpc_subnet" "sentry-a" {
   folder_id      = local.folder_id
+  v4_cidr_blocks = ["10.0.1.0/24"]
   zone           = "ru-central1-a"
   network_id     = yandex_vpc_network.sentry.id
-  v4_cidr_blocks = ["10.5.0.0/24"]
+}
+
+resource "yandex_vpc_subnet" "sentry-b" {
+  folder_id      = local.folder_id
+  v4_cidr_blocks = ["10.0.2.0/24"]
+  zone           = "ru-central1-b"
+  network_id     = yandex_vpc_network.sentry.id
+}
+
+resource "yandex_vpc_subnet" "sentry-d" {
+  folder_id      = local.folder_id
+  v4_cidr_blocks = ["10.0.3.0/24"]
+  zone           = "ru-central1-d"
+  network_id     = yandex_vpc_network.sentry.id
 }
