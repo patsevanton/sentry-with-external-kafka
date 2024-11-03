@@ -11,7 +11,7 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
 
   config {
     version          = "2.8"
-    brokers_count    = 3
+    brokers_count    = 1
     zones            = [
       yandex_vpc_subnet.sentry-a.zone,
       yandex_vpc_subnet.sentry-b.zone,
@@ -21,7 +21,7 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
     schema_registry  = false
     kafka {
       resources {
-        resource_preset_id = "s2.micro"
+        resource_preset_id = "s2.micro" # s3-c2-m8
         disk_type_id       = "network-ssd"
         disk_size          = 200
       }
