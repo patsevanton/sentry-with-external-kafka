@@ -82,7 +82,10 @@ resource "yandex_mdb_kafka_user" "sentry" {
       "snuba-spans",
       "snuba-transactions-commit-log",
       "transactions",
-      "transactions-subscription-results"
+      "transactions-subscription-results",
+      "scheduled-subscriptions-generic-metrics-gauges",
+      "snuba-profile-chunks",
+      "snuba-generic-metrics-gauges-commit-log",
     ])
 
     content {
@@ -147,7 +150,10 @@ resource "yandex_mdb_kafka_user" "sentry" {
       "snuba-spans",
       "snuba-transactions-commit-log",
       "transactions",
-      "transactions-subscription-results"
+      "transactions-subscription-results",
+      "scheduled-subscriptions-generic-metrics-gauges",
+      "snuba-profile-chunks",
+      "snuba-generic-metrics-gauges-commit-log",
     ])
 
     content {
@@ -889,6 +895,45 @@ resource "yandex_mdb_kafka_topic" "shared-resources-usage" {
 resource "yandex_mdb_kafka_topic" "snuba-metrics-summaries" {
   cluster_id         = yandex_mdb_kafka_cluster.sentry.id
   name               = "snuba-metrics-summaries"
+  partitions         = 1
+  replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
+}
+
+resource "yandex_mdb_kafka_topic" "scheduled-subscriptions-generic-metrics-gauges" {
+  cluster_id         = yandex_mdb_kafka_cluster.sentry.id
+  name               = "scheduled-subscriptions-generic-metrics-gauges"
+  partitions         = 1
+  replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
+}
+
+resource "yandex_mdb_kafka_topic" "snuba-profile-chunks" {
+  cluster_id         = yandex_mdb_kafka_cluster.sentry.id
+  name               = "snuba-profile-chunks"
+  partitions         = 1
+  replication_factor = 1
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
+}
+
+resource "yandex_mdb_kafka_topic" "snuba-generic-metrics-gauges-commit-log" {
+  cluster_id         = yandex_mdb_kafka_cluster.sentry.id
+  name               = "snuba-generic-metrics-gauges-commit-log"
   partitions         = 1
   replication_factor = 1
 
