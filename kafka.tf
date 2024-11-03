@@ -1,5 +1,5 @@
 resource "yandex_mdb_kafka_cluster" "sentry" {
-  folder_id   = ""
+  folder_id   = local.folder_id
   name        = "sentry"
   environment = "PRODUCTION"
   network_id  = yandex_vpc_network.sentry.id

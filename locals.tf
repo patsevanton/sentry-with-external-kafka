@@ -1,0 +1,3 @@
+locals {
+  folder_id = ""
+}
