@@ -7,4 +7,6 @@ locals {
   cores_of_k8s_hosts = 4
   kafka_user = "sentry"
   kafka_password = "your_password_here"
+  clickhouse_user = "sentry"
+  clickhouse_password = "your_password_here"
 }
