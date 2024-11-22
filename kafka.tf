@@ -3,16 +3,16 @@ resource "yandex_mdb_kafka_cluster" "sentry" {
   name        = "sentry"
   environment = "PRODUCTION"
   network_id  = yandex_vpc_network.sentry.id
-  subnet_ids  = [
+  subnet_ids = [
     yandex_vpc_subnet.sentry-a.id,
     yandex_vpc_subnet.sentry-b.id,
     yandex_vpc_subnet.sentry-d.id
   ]
 
   config {
-    version          = "2.8"
-    brokers_count    = 1
-    zones            = [
+    version       = "2.8"
+    brokers_count = 1
+    zones = [
       yandex_vpc_subnet.sentry-a.zone,
       yandex_vpc_subnet.sentry-b.zone,
       yandex_vpc_subnet.sentry-d.zone

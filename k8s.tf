@@ -63,8 +63,8 @@ resource "yandex_kubernetes_node_group" "k8s-node-group" {
     platform_id = "standard-v2"
 
     network_interface {
-      nat         = true
-      subnet_ids  = [
+      nat = true
+      subnet_ids = [
         yandex_vpc_subnet.sentry-a.id,
         yandex_vpc_subnet.sentry-b.id,
         yandex_vpc_subnet.sentry-d.id
