@@ -10,6 +10,14 @@ resource "yandex_resourcemanager_folder_iam_member" "sa-k8s-editor-permissions" 
   member = "serviceAccount:${yandex_iam_service_account.sa-k8s-editor.id}"
 }
 
+resource "time_sleep" "wait_sa" {
+  create_duration = "20s"
+  depends_on      = [
+    yandex_iam_service_account.sa-k8s-editor,
+    yandex_resourcemanager_folder_iam_member.sa-k8s-editor-permissions
+  ]
+}
+
 resource "yandex_kubernetes_cluster" "sentry" {
   name       = "sentry"
   folder_id  = local.folder_id
@@ -29,7 +37,7 @@ resource "yandex_kubernetes_cluster" "sentry" {
   release_channel         = "STABLE"
   // to keep permissions of service account on destroy
   // until cluster will be destroyed
-  depends_on = [yandex_resourcemanager_folder_iam_member.sa-k8s-editor-permissions]
+  depends_on = [time_sleep.wait_sa]
 }
 
 resource "yandex_kubernetes_node_group" "k8s-node-group" {
